@@ -55,7 +55,7 @@ const Todo = ({ todo, index, handleDeleteTodo }) => {
                 <tbody>
                     <tr>
                         <Link to={{
-                            pathname: '/todo/${todo._title}',
+                            pathname: `${'/todo/'+todo.title}`,
                             state: {
                                 todo: todo
                             }

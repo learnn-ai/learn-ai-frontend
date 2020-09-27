@@ -3,20 +3,11 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { 
   HomeOutlined, 
-  YoutubeOutlined, 
-  UserOutlined, 
+  YoutubeOutlined,  
   LineChartOutlined,
-  AppstoreOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  PieChartOutlined,
-  DesktopOutlined,
-  ContainerOutlined,
-  MailOutlined, 
 } from '@ant-design/icons';
-import { Layout, Menu, Button } from 'antd';
+import { Layout, Menu } from 'antd';
 
-const { SubMenu } = Menu;
 const { Sider } = Layout;
 
 class Nav extends Component {
@@ -67,12 +58,12 @@ class Nav extends Component {
   };
 
   onSelect({ item, key }) {
-    if (key === "home") {
-      this.setState({ redirect: { awaiting: true, path: "/home" } });
-    } else if (key === "workspace") {
+    if (key === "/dashboard") {
+      this.setState({ redirect: { awaiting: true, path: "/dashboard" } });
+    } else if (key === "/workspace") {
       this.setState({ redirect: { awaiting: true, path: "/login" } }); //Change me to work
-    } else if (key === "3") {
-      this.setState({ redirect: { awaiting: true, path: "/analytics" } }); //Change me to work
+    } else if (key === "/analytics") {
+      this.setState({ redirect: { awaiting: true, path: "/analytics" } });
     }
   };
 
@@ -95,16 +86,16 @@ class Nav extends Component {
         onCollapse={this.onCollapse}
       >
         <div className="logo" />
-        <Menu theme="dark" onSelect={this.onSelect} defaultSelectedKeys={['home']} mode="inline">
-          <Menu.Item key="home" style={menuItemStyle}>
+        <Menu theme="dark" onSelect={this.onSelect} selectedKeys={[window.location.pathname]} defaultSelectedKeys={['home']} mode="inline">
+          <Menu.Item key="/dashboard" style={menuItemStyle}>
             <HomeOutlined style={this.state.iconStyle} />
             <span >Home</span>
           </Menu.Item>
-          <Menu.Item key="workspace" style={menuItemStyle}>
+          <Menu.Item key="/workspace" style={menuItemStyle}>
             <YoutubeOutlined style={this.state.iconStyle} />
             <span>Workspace</span>
           </Menu.Item>
-          <Menu.Item key="3" style={menuItemStyle}>
+          <Menu.Item key="/analytics" style={menuItemStyle}>
             <LineChartOutlined style={this.state.iconStyle} />
             <span>Analytics</span>
           </Menu.Item>
@@ -115,43 +106,6 @@ class Nav extends Component {
           src={require("../../images/logo.svg")}
         />
       </Sider>
-
-      // <div style={{ width: 256 }}>
-      //   <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
-      //     {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
-      //   </Button>
-      //   <Menu
-      //     defaultSelectedKeys={['1']}
-      //     defaultOpenKeys={['sub1']}
-      //     mode="inline"
-      //     theme="dark"
-      //     inlineCollapsed={this.state.collapsed}
-      //   >
-      //     <Menu.Item key="1" icon={<PieChartOutlined />}>
-      //       Option 1
-      //     </Menu.Item>
-      //     <Menu.Item key="2" icon={<DesktopOutlined />}>
-      //       Option 2
-      //     </Menu.Item>
-      //     <Menu.Item key="3" icon={<ContainerOutlined />}>
-      //       Option 3
-      //     </Menu.Item>
-      //     <SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
-      //       <Menu.Item key="5">Option 5</Menu.Item>
-      //       <Menu.Item key="6">Option 6</Menu.Item>
-      //       <Menu.Item key="7">Option 7</Menu.Item>
-      //       <Menu.Item key="8">Option 8</Menu.Item>
-      //     </SubMenu>
-      //     <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Navigation Two">
-      //       <Menu.Item key="9">Option 9</Menu.Item>
-      //       <Menu.Item key="10">Option 10</Menu.Item>
-      //       <SubMenu key="sub3" title="Submenu">
-      //         <Menu.Item key="11">Option 11</Menu.Item>
-      //         <Menu.Item key="12">Option 12</Menu.Item>
-      //       </SubMenu>
-      //     </SubMenu>
-      //   </Menu>
-      // </div>
     );
   }
 }
